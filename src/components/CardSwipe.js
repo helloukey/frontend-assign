@@ -17,6 +17,7 @@ import timingLine from "../assets/timing-line.svg";
 const CardSwipe = () => {
   const { isActive, dispatchActive } = useSwipeContext();
   const [action, setAction] = useState(false);
+  const [line, setLine] = useState(false);
   const handlers = useSwipeable({
     onSwipedUp: () => dispatchActive(true),
     onSwipedDown: () => dispatchActive(false),
@@ -45,7 +46,7 @@ const CardSwipe = () => {
             initial={{ x: "-100vw" }}
             animate={{ x: "0" }}
             transition={{ duration: 1.2, ease: "easeInOut" }}
-            exit={{ x: "100vw" }}
+            exit={{ x: "-100vw" }}
             className="absolute top-5 left-5"
           >
             <img src={eventText} alt="event-text" />
@@ -54,7 +55,7 @@ const CardSwipe = () => {
             initial={{ x: "100px" }}
             animate={{ x: "0" }}
             transition={{ duration: 1.6, ease: "easeInOut" }}
-            exit={{ x: "100%" }}
+            exit={{ display: "none" }}
             className="absolute top-12 left-5"
           >
             <img src={designScrum} alt="design-scrum" />
@@ -63,7 +64,7 @@ const CardSwipe = () => {
             initial={{ x: "40px" }}
             animate={{ x: "0" }}
             transition={{ duration: 1.4, ease: "easeInOut" }}
-            exit={{ x: "100%" }}
+            exit={{ display: "none" }}
             className="absolute top-12 left-[45.5%]"
           >
             <img src={q2Planning} alt="q2-planning" />
@@ -72,23 +73,26 @@ const CardSwipe = () => {
             initial={{ opacity: 0.2 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
-            exit={{ opacity: 0 }}
+            exit={{ display: "none" }}
             className="absolute top-12 right-0"
+            onAnimationComplete={() => setLine(true)}
           >
             <img src={coldplay} alt="coldplay" />
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, ease: "easeInOut", delay: 1.5 }}
-            exit={{ opacity: 0 }}
-          >
-            <img
-              src={timingLine}
-              alt="timing-line"
-              className="absolute top-[34.5%] w-3/4 pt-[10%] right-[21px] bg-[rgba(255,255,255,0.5)]"
-            />
-          </motion.div>
+          {line && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              exit={{ display: "none" }}
+            >
+              <img
+                src={timingLine}
+                alt="timing-line"
+                className="absolute top-[34.5%] w-3/4 pt-[10%] right-[21px] bg-[rgba(255,255,255,0.5)]"
+              />
+            </motion.div>
+          )}
           <img
             src={addButton}
             alt="add-button"

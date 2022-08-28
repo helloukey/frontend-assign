@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       {isMobile ? (
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           <Routes location={location} key={location.key}>
             <Route path="/" element={<Welcome />} />
             <Route path="/todos" element={<Todos />} />
