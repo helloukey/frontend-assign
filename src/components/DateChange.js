@@ -3,7 +3,6 @@ import AnimatedNumbers from "react-animated-numbers";
 import { motion } from "framer-motion";
 
 const DateChange = () => {
-  const [num, setNum] = useState(2022);
   const [isAnimateNumber, setIsAnimateNumber] = useState(false);
   return (
     <motion.div
@@ -18,7 +17,7 @@ const DateChange = () => {
       {isAnimateNumber ? (
         <AnimatedNumbers
           fontStyle={{ fontSize: "36px", color: "#FFFFFF", fontWeight: "700" }}
-          animateToNumber={num}
+          animateToNumber={2022}
         />
       ) : (
         <p style={{ fontSize: "36px", color: "#FFFFFF", fontWeight: "700" }}>
