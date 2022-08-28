@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useMediaQuery } from "react-responsive";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+
+import Welcome from "./pages/Welcome";
+import Todos from "./pages/Todos";
+import "./App.css";
 
 function App() {
+  const location = useLocation();
+  const isMobile = useMediaQuery({
+    query: "(max-width: 450px)",
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isMobile ? (
+        <AnimatePresence exitBeforeEnter>
+          <Routes location={location} key={location.key}>
+            <Route path="/" element={<Welcome />} />
+            <Route path="/todos" element={<Todos />} />
+          </Routes>
+        </AnimatePresence>
+      ) : (
+        <div className="min-h-screen flex justify-center items-center font-bold text-2xl text-white">
+          Please use a mobile device.
+          <br />
+          😄
+          <br />
+          OR
+          <br />
+          Press F12 to open dev-tool on desktop.
+        </div>
+      )}
     </div>
   );
 }

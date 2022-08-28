@@ -1,0 +1,33 @@
+.rdp-months {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.rdp-month:first-child,
+.rdp-month:last-child {
+    margin: 0rem;
+}
+
+.rdp-table {
+    margin: auto;
+}
+
+.rdp-tbody {
+    width: 100%;
+    margin: auto;
+}
+
+.rdp-day_selected:not([disabled]),
+.rdp-day_selected:hover:not([disabled]),
+.rdp-button:hover:not([disabled]) {
+    color: #000;
+    background-color: #FFFFFF;
+    font-weight: 800;
+    font-size: large;
+    border: none;
+}
+
+.rdp-caption_label {
+    z-index: 0;
+}
